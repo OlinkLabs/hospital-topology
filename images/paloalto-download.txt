@@ -1,0 +1,5 @@
+https://gns3.com/marketplace/appliances/pa-vm
+
+https://sso.paloaltonetworks.com/app/panw-ciam_csp_1/exk3fodb7vYyBQ38d0j6/sso/saml?RelayState=/Updates/SoftwareUpdates/
+
+En caso de que no funcione de manera official, se puede descargar de manera extraofficial: https://upw.io/4BL/PA-VM-KVM-11.0.0.qcow2
