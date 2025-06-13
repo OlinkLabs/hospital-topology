@@ -1,4 +1,4 @@
-# yaml-language-server: $schema=
+# yaml-language-server: $schema=https://raw.githubusercontent.com/OlinkLabs/containerlab/custom_schemas/schemas/clab.schema.json
 name: red-hospital
 
 mgmt:
@@ -19,9 +19,15 @@ topology:
     tpl_linux:
       kind: tpl_linux
       image: nicolaka/netshoot:latest
+      #image: debian:latest
 
     tpl_alpine_linux:
       kind: tpl_alpine_linux
+      image: nicolaka/netshoot:latest
+      #image: alpine:latest
+
+    tpl_testing:
+      kind: tpl_testing
       image: nicolaka/netshoot:latest
 
     tpl_paloalto_panos:
@@ -94,20 +100,22 @@ topology:
 
     fw_fortinet:
       kind: tpl_fortinet_fortigate
+      mgmt-ipv4: 5.0.10.29
       ports:
         - "8080:80"
       labels:
         graph-posX: "455"
-        graph-posY: "405"
+        graph-posY: "475"
         graph-groupLabelPos: bottom-center
 
     fw_paloalto:
       kind: tpl_paloalto_panos
+      mgmt-ipv4: 5.0.10.30
       ports:
         - "8443:443"
       labels:
-        graph-posX: "525"
-        graph-posY: "435"
+        graph-posX: "475"
+        graph-posY: "415"
         graph-groupLabelPos: bottom-center
 
     dns_dhcp_server:
@@ -262,55 +270,53 @@ topology:
         - ip link set eth1 up
         - ip route add default via 10.0.200.1 dev eth1
       labels:
-        graph-posX: "375"
-        graph-posY: "435"
+        graph-posX: "435"
+        graph-posY: "445"
         graph-groupLabelPos: bottom-center
 
     host_externo:
       kind: tpl_alpine_linux
       labels:
-        graph-posX: "405"
+        graph-posX: "435"
         graph-posY: "385"
         graph-groupLabelPos: bottom-center
 
   links:
     # Spine ←→ Distribution Leafs
-    - endpoints: [ "leaf1:Ethernet0/1", "spine1:Ethernet0/1" ]
-    - endpoints: [ "leaf1:Ethernet0/2", "spine2:Ethernet0/1" ]
-    - endpoints: [ "leaf1:Ethernet0/3", "web_server_interno:eth1" ]
-    - endpoints: [ "leaf1:Ethernet1/1", "base_datos:eth1" ]
-    - endpoints: [ "leaf1:Ethernet1/2", "dns_dhcp_server:eth1" ]
-    - endpoints: [ "leaf1:Ethernet1/3", "camara1:eth1" ]
-    - endpoints: [ "leaf2:Ethernet0/1", "spine1:Ethernet0/2" ]
-    - endpoints: [ "leaf2:Ethernet0/2", "spine2:Ethernet0/2" ]
-    - endpoints: [ "leaf2:Ethernet0/3", "host_gestion:eth1" ]
-    - endpoints: [ "leaf2:Ethernet1/1", "camara2:eth1" ]
-    - endpoints: [ "leaf2:Ethernet1/2", "host_gestion_camaras:eth1" ]
-    - endpoints: [ "leaf3:Ethernet0/1", "spine1:Ethernet0/3" ]
-    - endpoints: [ "leaf3:Ethernet0/2", "spine2:Ethernet0/3" ]
-    - endpoints: [ "leaf3:Ethernet0/3", "camara3:eth1" ]
-    - endpoints: [ "leaf3:Ethernet1/1", "host_gamma_knife:eth1" ]
-    - endpoints: [ "leaf4:Ethernet0/1", "spine1:Ethernet1/1" ]
-    - endpoints: [ "leaf4:Ethernet0/2", "spine2:Ethernet1/1" ]
-    - endpoints: [ "leaf4:Ethernet0/3", "camara4:eth1" ]
-    - endpoints: [ "leaf4:Ethernet1/1", "host_electro:eth1" ]
-    - endpoints: [ "leaf4:Ethernet1/2", "host_pruebas_medicas:eth1" ]
+    - endpoints: [ "leaf1:e0/1", "spine1:e0/1" ]
+    - endpoints: [ "leaf1:e0/2", "spine2:e0/1" ]
+    - endpoints: [ "leaf1:e0/3", "web_server_interno:eth1" ]
+    - endpoints: [ "leaf1:e1/1", "base_datos:eth1" ]
+    - endpoints: [ "leaf1:e1/2", "dns_dhcp_server:eth1" ]
+    - endpoints: [ "leaf1:e1/3", "camara1:eth1" ]
+    - endpoints: [ "leaf2:e0/1", "spine1:e0/2" ]
+    - endpoints: [ "leaf2:e0/2", "spine2:e0/2" ]
+    - endpoints: [ "leaf2:e0/3", "host_gestion:eth1" ]
+    - endpoints: [ "leaf2:e1/1", "camara2:eth1" ]
+    - endpoints: [ "leaf2:e1/2", "host_gestion_camaras:eth1" ]
+    - endpoints: [ "leaf3:e0/1", "spine1:e0/3" ]
+    - endpoints: [ "leaf3:e0/2", "spine2:e0/3" ]
+    - endpoints: [ "leaf3:e0/3", "camara3:eth1" ]
+    - endpoints: [ "leaf3:e1/1", "host_gamma_knife:eth1" ]
+    - endpoints: [ "leaf4:e0/1", "spine1:e1/1" ]
+    - endpoints: [ "leaf4:e0/2", "spine2:e1/1" ]
+    - endpoints: [ "leaf4:e0/3", "camara4:eth1" ]
+    - endpoints: [ "leaf4:e1/1", "host_electro:eth1" ]
+    - endpoints: [ "leaf4:e1/2", "host_pruebas_medicas:eth1" ]
 
     # ———— Border Leaf 1 ————
-    - endpoints: [ "border-leaf1:Ethernet0/1", "spine1:Ethernet1/2" ]
-    - endpoints: [ "border-leaf1:Ethernet0/2", "spine2:Ethernet1/2" ]
-    - endpoints: [ "border-leaf1:Ethernet0/3", "fw_paloalto:Ethernet1/1" ]
+    - endpoints: [ "border-leaf1:e0/1", "spine1:e1/2" ]
+    - endpoints: [ "border-leaf1:e0/2", "spine2:e1/2" ]
+    - endpoints: [ "border-leaf1:e0/3", "fw_fortinet:eth1" ]
 
     # ———— Border Leaf 2 ————
-    - endpoints: [ "border-leaf2:Ethernet0/1", "spine1:Ethernet1/3" ]
-    - endpoints: [ "border-leaf2:Ethernet0/2", "spine2:Ethernet1/3" ]
-    - endpoints: [ "border-leaf2:Ethernet0/3", "fw_paloalto:Ethernet1/2" ]
+    - endpoints: [ "border-leaf2:e0/1", "spine1:e1/3" ]
+    - endpoints: [ "border-leaf2:e0/2", "spine2:e1/3" ]
+    - endpoints: [ "border-leaf2:e0/3", "fw_fortinet:eth2" ]
 
     # ———— DMZ ————
-    - endpoints: [ "web_server_dmz:eth1", "border-leaf1:Ethernet1/1" ]
-    - endpoints: [ "web_server_dmz:eth2", "border-leaf2:Ethernet1/1" ]
+    - endpoints: [ "web_server_dmz:eth1", "fw_paloalto:Ethernet1/1" ]
+    - endpoints: [ "web_server_dmz:eth2", "fw_fortinet:eth3" ]
 
     # ———— Internet ————
-    - endpoints: [ "fw_fortinet:eth1", "border-leaf1:Ethernet1/2" ]
-    - endpoints: [ "fw_fortinet:eth2", "border-leaf2:Ethernet1/2" ]
-    - endpoints: [ "fw_fortinet:eth3", "host_externo:eth1" ]
+    - endpoints: [ "host_externo:eth1", "fw_paloalto:Ethernet1/2" ]
