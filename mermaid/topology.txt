@@ -1,0 +1,64 @@
+Link al chart:
+
+https://www.mermaidchart.com/play?utm_source=mermaid_live_editor&utm_medium=toggle#pako:eNqNlNuOmzAQQH_F4qHaPERaDE95C-SyK5EILatW2lIhB5wELdiRcTa9qFL_oX_YL-n4AopRtioPI2bOMFfjH17JK-rNvOl0mrOSs319mOUMoYZ842c5Q7R5zZmG-4ZfyiMREiVP4NGddwdBTkcUc0GL7FQz2n3OPaUho-XeFxXJPFnqA-0U8EcA9wBbQFl1nWBRd7JIKNmr-EoR9e4sa86QNjrREpWlAbOP7tK648ifuBxbji3HIx5YHlgejHhoeYisQzi5XXXERUXFULdRb1Qc6ZJ3Gk915SOMXfzOkFa1oBfSNCrX8O5ESueAUtJwNG8kd9DqWX3FhYQlyNvxH5mkgpGmyKh4q0u9696Gehu6-5jMt8j3p37ozu1hDf5HDos80E7tzqGfsuJxq2q40F3RQTAYXK2Du3UuIjUL0tGiIpK77S22GcCKdUV1LE82yu1eYtJSQfRpNW-2buz_-fUbjyqP1XpK0hJB3M3EeADYBcEAAheEAwhH04lH4ymMW3e7gQ2t6hJ28QBfqDasjrRumwlUM8GomfVmyEPalhSvrN5Tx2OZ9B60oaUU7gLS4fuTOFPYRNHq1O_Uudi8qF9289IP-P5-Ml688blafNV-_9cRpHI4ecNZtVNcDqV_vT47Joy5gxBcZXBJoA9wEygRKBGCiLQR_rbeFf-va2KCmjMMYBEpsc1Axr51McFiFQd2raUlgSEq-HpjbaGxqVzLBERqQWRTrZ57HTt6PxVtTOfGaEbs-KXzvmIgOfN-_gWkKcUs
+
+En caso de no poder acceder al link, porque esté caducado, puedes copiar el siguiente código y pegarlo en Mermaid.
+
+---
+config:
+  layout: elk
+---
+flowchart LR
+ subgraph Core_Spines["Core Spines"]
+        SP1["spine1"]
+        SP2["spine2"]
+  end
+ subgraph Dist_Leafs["Distribution Leafs"]
+        L1["leaf1 (Piso 1)"]
+        L2["leaf2 (Piso 2)"]
+        L3["leaf3 (Piso 3)"]
+        L4["leaf4  (Piso 4)"]
+  end
+ subgraph Border_Leafs["Border Leafs"]
+        BL1["border-leaf1"]
+        BL2["border-leaf2"]
+  end
+ subgraph Firewalls["Firewalls"]
+        PA["Palo Alto"]
+        FT["Fortinet"]
+  end
+ subgraph Internal_Services["Internal Services (VLAN 11-14)"]
+        HG["host_gestion"]
+        WS_INT["web_server_interno"]
+        DB["base_datos"]
+        DNS["dns_dhcp_server"]
+  end
+ subgraph Cameras["Cameras (VLAN 21–24)"]
+        C1["camara1"]
+        C2["camara2"]
+        C3["camara3"]
+        C4["camara4"]
+        HGC["host_gestion_camaras"]
+  end
+ subgraph Medical_Hosts["Medical Hosts (VLAN 31–34)"]
+        GM["host_gamma_knife"]
+        EL["host_electro"]
+        PM["host_pruebas_medicas"]
+  end
+ subgraph DMZ["DMZ (VLAN 200)"]
+        WS_DMZ["web_server_dmz"]
+  end
+ subgraph Internet["Internet"]
+        HE["host_externo"]
+  end
+    SP1 --- L1 & L2 & L3 & L4 & BL1 & BL2
+    SP2 --- L1 & L2 & L3 & L4 & BL1 & BL2
+    L1 --- WS_INT & DB & DNS & C1
+    L2 --- C2 & HGC & HG
+    L3 --- C3 & GM
+    L4 --- C4 & EL & PM
+    BL1 --- FT
+    BL2 --- FT
+    Internet --- PA
+    WS_DMZ --- FT
+    PA --- WS_DMZ

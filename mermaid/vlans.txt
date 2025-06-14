@@ -1,0 +1,43 @@
+Link al chart:
+
+https://www.mermaidchart.com/play?utm_source=mermaid_live_editor&utm_medium=toggle#pako:eNp1kj9Lw0AYxr_KkUEUEkjuMmUQbCtdoogFB42Ua3NtD9O7ekmQIoKrk6BuDtJJnB107zfxC-hH8P6kpdemmfI-v_d53-dyuXX6PCVO5Hiel7A-ZwM6jBIGQIanvCwiQLKrhGk4yPhNf4RFAeJT2ZGXvaHAkxFockG6nQllJL9IHFUBUyXOpZpkns5JIGmuQLAG4ALAChCWri5o0bzoxgQP1HxVCNorC8oZ0KI1LVZbMinbS2JYydCWUSUjWw4rOawP1OAiJWIZyZQ1YRo6TU9jbzNUQ6dawVvOH5OpVLDsPYsPjjvWjLba8Pf28g4UA0Hwc_8chBFok7yg808GKCuIYNg2QW16_jImqExQmprz2RgLbB-ijXTz04NpRqoZyebD65JOeA7G84-U9vmaKdSm19nv92O1xPcj0Do6t45o_gvgeTK4C9XLvrzBBYDbgHFAF0IDoO2oAdoBkYuQAchy1AHjCF0UGhDajhpgUso7Bzvqalf7N2RVqjG-r6n8LtXtamlX1nvL7ylNa73O3T_61wuV
+
+En caso de no poder acceder al link, porque esté caducado, puedes copiar el siguiente código y pegarlo en Mermaid.
+
+---
+config:
+  layout: elk
+---
+flowchart LR
+ subgraph Core_Spines["Core Spines"]
+        SP1["spine1"]
+        SP2["spine2"]
+  end
+ subgraph Dist_Leafs["Distribution Leafs"]
+        L1["leaf1"]
+        L2["leaf2"]
+        L3["leaf3"]
+        L4["leaf4"]
+  end
+ subgraph Border_Leafs["Border Leafs"]
+        BL1["border-leaf1"]
+        BL2["border-leaf2"]
+  end
+ subgraph Leyenda["VLANS"]
+        G1["🔧 VLAN 11–14: Gestión interna"]
+        G2["📷 VLAN 21–24: Cámaras"]
+        G3["💉 VLAN 31–34: Equipos médicos"]
+        G4["🛡️ VLAN 200: DMZ"]
+  end
+    SP1 -- 11,21 --> L1
+    SP2 -- 11,21 --> L1
+    SP1 -- 12,22 --> L2
+    SP2 -- 12,22 --> L2
+    SP1 -- 23,33 --> L3
+    SP2 -- 23,33 --> L3
+    SP1 -- 24,34 --> L4
+    SP2 -- 24,34 --> L4
+    SP1 --> BL1 & BL2
+    SP2 --> BL1 & BL2
+    BL1 -- 200 --> DMZ["VLAN 200 (DMZ)"]
+    BL2 -- 200 --> DMZ
