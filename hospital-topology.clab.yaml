@@ -122,9 +122,9 @@ topology:
       kind: tpl_linux
       network-mode: none
       exec:
-        - ip addr add 10.0.10.10/24 dev eth1
+        - ip addr add 10.0.11.10/24 dev eth1
         - ip link set eth1 up
-        - ip route add default via 10.0.10.1 dev eth1
+        - ip route add default via 10.0.11.254 dev eth1
       labels:
         graph-posX: "255"
         graph-posY: "565"
@@ -134,9 +134,9 @@ topology:
       kind: tpl_linux
       network-mode: none
       exec:
-        - ip addr add 10.0.10.20/24 dev eth1
+        - ip addr add 10.0.11.20/24 dev eth1
         - ip link set eth1 up
-        - ip route add default via 10.0.10.1 dev eth1
+        - ip route add default via 10.0.11.254 dev eth1
       labels:
         graph-posX: "255"
         graph-posY: "595"
@@ -146,9 +146,9 @@ topology:
       kind: tpl_linux
       network-mode: none
       exec:
-        - ip addr add 10.0.10.30/24 dev eth1
+        - ip addr add 10.0.11.30/24 dev eth1
         - ip link set eth1 up
-        - ip route add default via 10.0.10.1 dev eth1
+        - ip route add default via 10.0.11.254 dev eth1
       labels:
         graph-posX: "275"
         graph-posY: "625"
@@ -158,9 +158,9 @@ topology:
       kind: tpl_alpine_linux
       network-mode: none
       exec:
-        - ip addr add 10.0.10.40/24 dev eth1
+        - ip addr add 10.0.12.10/24 dev eth1
         - ip link set eth1 up
-        - ip route add default via 10.0.10.1 dev eth1
+        - ip route add default via 10.0.12.254 dev eth1
       labels:
         graph-posX: "375"
         graph-posY: "645"
@@ -170,9 +170,9 @@ topology:
       kind: tpl_alpine_linux
       network-mode: none
       exec:
-        - ip addr add 10.0.20.100/24 dev eth1
+        - ip addr add 10.0.22.5/24 dev eth1
         - ip link set eth1 up
-        - ip route add default via 10.0.20.1 dev eth1
+        - ip route add default via 10.0.22.254 dev eth1
       labels:
         graph-posX: "415"
         graph-posY: "655"
@@ -182,9 +182,9 @@ topology:
       kind: tpl_alpine_linux
       network-mode: none
       exec:
-        - ip addr add 10.0.30.100/24 dev eth1
+        - ip addr add 10.0.34.10/24 dev eth1
         - ip link set eth1 up
-        - ip route add default via 10.0.30.1 dev eth1
+        - ip route add default via 10.0.34.254 dev eth1
       labels:
         graph-posX: "635"
         graph-posY: "585"
@@ -194,9 +194,9 @@ topology:
       kind: tpl_alpine_linux
       network-mode: none
       exec:
-        - ip addr add 10.0.30.20/24 dev eth1
+        - ip addr add 10.0.34.20/24 dev eth1
         - ip link set eth1 up
-        - ip route add default via 10.0.30.1 dev eth1
+        - ip route add default via 10.0.34.254 dev eth1
       labels:
         graph-posX: "595"
         graph-posY: "645"
@@ -206,9 +206,9 @@ topology:
       kind: tpl_alpine_linux
       network-mode: none
       exec:
-        - ip addr add 10.0.30.10/24 dev eth1
+        - ip addr add 10.0.33.10/24 dev eth1
         - ip link set eth1 up
-        - ip route add default via 10.0.30.1 dev eth1
+        - ip route add default via 10.0.33.254 dev eth1
       labels:
         graph-posX: "535"
         graph-posY: "645"
@@ -218,9 +218,9 @@ topology:
       kind: tpl_alpine_linux
       network-mode: none
       exec:
-        - ip addr add 10.0.20.10/24 dev eth1
+        - ip addr add 10.0.21.10/24 dev eth1
         - ip link set eth1 up
-        - ip route add default via 10.0.20.1 dev eth1
+        - ip route add default via 10.0.21.254 dev eth1
       labels:
         graph-posX: "325"
         graph-posY: "645"
@@ -230,9 +230,9 @@ topology:
       kind: tpl_alpine_linux
       network-mode: none
       exec:
-        - ip addr add 10.0.20.20/24 dev eth1
+        - ip addr add 10.0.22.10/24 dev eth1
         - ip link set eth1 up
-        - ip route add default via 10.0.20.1 dev eth1
+        - ip route add default via 10.0.22.254 dev eth1
       labels:
         graph-posX: "445"
         graph-posY: "645"
@@ -242,9 +242,9 @@ topology:
       kind: tpl_alpine_linux
       network-mode: none
       exec:
-        - ip addr add 10.0.20.30/24 dev eth1
+        - ip addr add 10.0.23.10/24 dev eth1
         - ip link set eth1 up
-        - ip route add default via 10.0.20.1 dev eth1
+        - ip route add default via 10.0.23.254 dev eth1
       labels:
         graph-posX: "485"
         graph-posY: "645"
@@ -254,9 +254,9 @@ topology:
       kind: tpl_alpine_linux
       network-mode: none
       exec:
-        - ip addr add 10.0.20.40/24 dev eth1
+        - ip addr add 10.0.24.10/24 dev eth1
         - ip link set eth1 up
-        - ip route add default via 10.0.20.1 dev eth1
+        - ip route add default via 10.0.24.254 dev eth1
       labels:
         graph-posX: "625"
         graph-posY: "625"
